@@ -1,7 +1,7 @@
 main {
     display: grid;
     grid-template-rows: 192px 1fr 96px;
-    grid-template-columns: 8em 1fr;
+    grid-template-columns: 5em 1fr;
 }
 
 header {
