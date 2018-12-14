@@ -50,6 +50,10 @@ article ul {
     margin-left:2em;
 }
 
+article img {
+    max-width: 100%;
+}
+
 nav {
     grid-row: 2;
     grid-column: 1;
