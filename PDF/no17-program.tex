@@ -1,0 +1,76 @@
+\documentclass[english,11pt]{ltjsarticle} % use lualatex
+
+\usepackage[top=5mm , bottom=5mm, left=5mm, right=5mm]{geometry}
+\usepackage{amsmath,amssymb,bm,xcolor} %% math font and color
+
+
+\makeatletter
+\newcommand{\setcurrtime}[1]{%
+  \set@time\curr@hour\curr@mins#1\@nil
+}
+\def\set@time#1#2#3:#4\@nil{%
+  \def#1{#3}\def#2{#4}%
+}
+
+\newcommand{\currtime}[1][00:00]{%
+  %\begingroup
+  \set@time\new@hour\new@mins#1\@nil
+  \count\z@=\curr@mins\relax
+  \count\tw@=\curr@hour\relax
+  \advance\count\z@\new@mins\relax
+  \advance\count\tw@\new@hour\relax
+  \ifnum\count\z@>59
+    \advance\count\z@-60
+    \advance\count\tw@\@ne
+  \fi
+  % we have to use \count\z@ and \count\tw@ before
+  % ending the group and printing the result
+  %\set@time\count\tw@\count\z@00:00\@nil
+  %\set@time\count\tw@\count\z@00:00\@nil
+  %\edef\x{\endgroup\two@digits{\count\tw@}:\two@digits{\count\z@}}\x
+  \two@digits{\count\tw@}:\two@digits{\count\z@}
+  \setcurrtime{\two@digits{\count\tw@}:\two@digits{\count\z@}}
+}
+\makeatother
+
+
+\newcommand\additem[2]
+{%
+  \item \currtime[00:00] -- \currtime [00:30] \\
+   #1 : #2
+}
+\newcommand\addbreak[1]
+{%
+\item[$\star$] \currtime[00:00] -- \currtime [00:30] #1
+}
+
+\title{第17回 京都算楽会プログラム}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{2024/11/9 (Sat) 講演I部　14:00 -- 17:00}
+\setcurrtime{14:00}
+\begin{enumerate}
+    \additem{安田 英典}{Numericsの時代と少しその先}
+    \additem{西岡 由紀子}{ 設備保全会社のDX事情}
+    \addbreak{休憩時間}
+    \additem{原田 健自}{テンソル木を使ってデータの関係構造を見つける}
+    \additem{山本 野人}{ 保存量を伴うODE系の精度保証法について}
+    \additem{降籏 大介}{ 質量保存系偏微分⽅程式へのボロノイ粒⼦法の適⽤による質量保存性再現数値計算}
+\end{enumerate}
+    \section{2024/11/9 (Sat) 全体討論　20:00 -- 21:00}
+
+    \section{2024/11/10 (Sun) 講演II部　9:30 --11:30}
+\begin{enumerate}
+\setcurrtime{9:30}
+    \additem{鈴木 厚}{変分不等式の数値計算手法}
+    \additem{青木 高明}{TBA}
+    \additem{竹川 高志}{TBA}
+    \additem{青柳 富誌生}{レザバー計算の理論}
+\end{enumerate}
+
+    \end{document}
+
